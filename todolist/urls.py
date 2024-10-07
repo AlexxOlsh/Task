@@ -1,23 +1,18 @@
-from django.urls import path, include
+from django.urls import path
 from rest_framework.routers import DefaultRouter
 from todolist.apps import TodolistConfig
-from todolist.views import base, about, TaskViewSet
-from todolist.views import TasktListView, TasktCreateView, TaskRetrievView, TaskUpdateView, TaskDestroyView
-from todolist.views import CommentListView, CommentCreateView, CommentDestroyView, CommentRetrievView, CommentUpdateView
-from todolist.views import TagDestroyView, TagCreateView, TagUpdateView, TagRetrievView, TagtListView
+from todolist.views import *
+
 
 router = DefaultRouter()
-# router.register('tasks', TaskViewSet)
-# router.register('comments', CommentViewSet)
-# router.register('tags', TagViewSet)
 
 
 app_name = TodolistConfig.name
 
 urlpatterns = [
     path('', base, name='base'),
-    path('/about/', about, name='about'),
-# Маршрутизация для работы контроллеров модели Task
+    path('about/', about, name='about'),
+    # Маршрутизация для работы контроллеров модели Task
     path('tasks/create/', TasktCreateView.as_view(), name='task-create'),
     path('tasks/', TasktListView.as_view(), name='task-list'),
     path('tasks/<int:pk>/', TaskRetrievView.as_view(), name='task-retrieve'),
@@ -37,5 +32,7 @@ urlpatterns = [
     path('tags/<int:pk>/', TagRetrievView.as_view(), name='tag-retrieve'),
     path('tags/<int:pk>/update/', TagUpdateView.as_view(), name='tag-update'),
     path('tags/<int:pk>/delete/', TagDestroyView.as_view(), name='tag-destroy'),
+
+    path('check_deadlines/', check_deadlines, name='check'),
 ] 
 # + router.urls

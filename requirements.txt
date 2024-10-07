@@ -1,0 +1,7 @@
+djangorestframework
+drf-yasg
+djangorestframework_simplejwt
+django-debug-toolbar=4.4.6)
+django_redis=5.4.0)
+celery=5.4.0
+python-dotenv=1.0.1

@@ -14,10 +14,8 @@ class Task_Admin(admin.ModelAdmin):
     search_fields = ('name', 'description')
     list_filter = ('task_date', 'author')
 
-
     inlines = [
         CommentInline,
     ]
 
 
-# Register your models here.

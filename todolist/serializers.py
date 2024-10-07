@@ -1,5 +1,6 @@
 from rest_framework import serializers, views, response
 from todolist.models import Task, Comment, Tag
+from .utils import get_cached_tags
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -21,3 +22,8 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = ['name', 'description', 'task_date', 'is_done', 'comments', 'tags']
+
+    @staticmethod
+    def get_tags(obj):
+        tags = get_cached_tags(obj.id)
+        return [tag.name for tag in tags]
